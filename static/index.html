@@ -450,7 +450,7 @@ if (savedTheme) document.documentElement.dataset.theme = savedTheme;
 
 // Locally, server.py serves /api/* on the same origin. Anywhere else (GitHub Pages),
 // requests go to the Cloudflare Worker in worker/worker.js.
-const WORKER_URL = "https://pulse-api.YOUR-SUBDOMAIN.workers.dev";
+const WORKER_URL = "https://dashboard-stocks.qiulechen1999.workers.dev";
 const API_BASE = ["localhost", "127.0.0.1"].includes(location.hostname) ? "" : WORKER_URL;
 
 async function api(path, timeoutMs = 15000) {
