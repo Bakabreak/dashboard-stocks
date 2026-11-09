@@ -17,6 +17,12 @@ Static files are sent with `Cache-Control: no-cache`, so a browser reload picks 
 
 To check endpoints by hand, curl them, e.g. `curl "localhost:8000/api/quotes?symbols=AAPL,^GSPC"`.
 
+## Deployment
+
+- **Frontend:** GitHub Pages. `.github/workflows/pages.yml` publishes `static/` on every push to `main` that touches it.
+- **API:** `worker/worker.js` is a Cloudflare Worker, a dependency-free JS port of the `/api/*` routes in `server.py`. It's deployed by pasting it into the Cloudflare dashboard. **Any change to an API route must be made in both `server.py` and `worker/worker.js`.**
+- `API_BASE` in `index.html` is empty on localhost (requests go to `server.py`) and `WORKER_URL` everywhere else.
+
 ## Architecture
 
 ### Backend (`server.py`): a Yahoo Finance proxy
