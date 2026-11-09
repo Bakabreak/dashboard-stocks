@@ -20,7 +20,7 @@ To check endpoints by hand, curl them, e.g. `curl "localhost:8000/api/quotes?sym
 ## Deployment
 
 - **Frontend:** GitHub Pages. `.github/workflows/pages.yml` publishes `static/` on every push to `main` that touches it.
-- **API:** `worker/worker.js` is a Cloudflare Worker, a dependency-free JS port of the `/api/*` routes in `server.py`. It's deployed by pasting it into the Cloudflare dashboard. **Any change to an API route must be made in both `server.py` and `worker/worker.js`.**
+- **API:** `worker/worker.js` is a Cloudflare Worker, a dependency-free JS port of the `/api/*` routes in `server.py`. The Cloudflare project is connected to this repo, so every push to `main` redeploys it according to `wrangler.toml`: the Worker runs `/api/*`, and `static/` is served at every other path. The Worker URL therefore hosts the full site too. Without `wrangler.toml`, the Cloudflare build deploys only the static files, and every API route returns 404. **Any change to an API route must be made in both `server.py` and `worker/worker.js`.**
 - `API_BASE` in `index.html` is empty on localhost (requests go to `server.py`) and `WORKER_URL` everywhere else.
 
 ## Architecture

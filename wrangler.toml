@@ -1,0 +1,8 @@
+# Cloudflare Workers deploy config (used by Cloudflare's Git-connected builds: `npx wrangler deploy`).
+# The Worker serves /api/* from worker/worker.js; every other path is served from static/.
+name = "dashboard-stocks"
+main = "worker/worker.js"
+compatibility_date = "2025-09-01"
+
+[assets]
+directory = "./static"
